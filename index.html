@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .for-cols {
+        border-radius: 20px;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 5rem;
+        background-color: rgb(51, 51, 138);
+        padding: 2rem;
+        color: #fff;
+      }
+      .number,
+      .select {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+      }
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        gap: 2rem;
+        height: 100vh;
+      }
+      .div {
+        margin-bottom: 5rem;
+      }
+      select,
+      input {
+        color: #fff;
+        height: 2rem;
+        width: 10rem;
+        border-radius: 10px;
+        border: 3px solid rgba(0, 0, 0);
+        background-color: rgb(51, 51, 138, 0.25);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="for-cols">
+      <div class="select">
+        <label for="the-options">Balance</label>
+        <select name="the-options" id="options">
+          <option value="choose ">Choose an option</option>
+          <option value="top-up">Top up</option>
+          <option value="principal">Principal</option>
+          <option value="intrest">Interest</option>
+        </select>
+      </div>
+      <!-- //////// -->
+      <div class="number">
+        <label for="num">New Principal</label>
+        <input type="number" id="new" placeholder="Enter-value" />
+      </div>
+      <!-- //////// -->
+      <div class="number">
+        <label for="num">Add Amount</label>
+        <input type="number" id="amount" placeholder="Enter-value" />
+      </div>
+      <!-- //////// -->
+      <div class="number">
+        <label for="num">Rate</label>
+        <input type="number" id="rate" placeholder="Enter-value" />
+      </div>
+      <!-- //////// -->
+      <div class="number">
+        <label for="num">Interest</label>
+        <input type="number" id="new-interest" placeholder="Enter-value" />
+      </div>
+      <!-- //////// -->
+    </div>
+    <button class="button">press me</button>
+
+    <div class="div"></div>
+  </body>
+
+  <script>
+    // ////////////////////
+    const newPrincipal = document.getElementById("new");
+    const option = document.getElementById("options");
+    option.addEventListener("change", function (e) {
+      // console.log("how are you ");
+      // const choose = document.getElementById("choose");
+      // const top = document.getElementById("top");
+      // const capital = document.getElementById("capital");
+
+      const initialInterest = Number(7000);
+      const pen = Number(5000);
+      // console.log(Pall - pen);
+
+      if (this.value == "top-up") {
+        console.log(`this is the ${this.value}`);
+        newPrincipal.value = initialInterest;
+        // /////////////////
+      } else if (this.value == "principal") {
+        console.log(`this is the ${this.value}`);
+        newPrincipal.value = pen;
+      } else if (this.value == "intrest") {
+        console.log(`this is the ${this.value}`);
+        newPrincipal.value = initialInterest - pen;
+      } else {
+        console.log("choose an option");
+        e.preventDefault();
+      }
+    });
+    //
+    const div = document.querySelector(".div");
+    document.querySelector(".button").addEventListener("click", function (e) {
+      const amount = Number(document.getElementById("amount").value);
+      const amp = Number(newPrincipal.value) + amount;
+      console.log(amp);
+      console.log("hey how ar");
+      const rate = Number(document.getElementById("rate").value);
+      const newInterest = Number(document.getElementById("new-interest").value);
+      console.log(rate);
+      console.log(newInterest);
+
+      ///////////////////////
+      const pry = amp * rate * newInterest;
+      console.log(pry);
+      const price = pry / 100;
+      console.log("hey");
+      console.log(price);
+      const newPrt = Number(price) + Number(amp);
+      div.textContent = newPrt;
+    });
+  </script>
+</html>
